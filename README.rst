@@ -1,7 +1,7 @@
 Quantumpy
 ======
 
-An ultra simple wrapper for Socialmetrix Quantum API, with basic functionality
+	An ultra simple wrapper for the Socialmetrix Quantum API, with basic functionality
 
 Usage
 -----
