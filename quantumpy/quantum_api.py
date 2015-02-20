@@ -118,8 +118,6 @@ class QuantumAPI(object):
 
         try:
             if method == 'GET':
-                #print('{}: {}'.format(method, url))
-                #print(params)
                 response = self.session.request(
                     method,
                     url,
