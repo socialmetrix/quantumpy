@@ -50,7 +50,7 @@ class QuantumAPI(object):
 
     def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='+00:00', retry=3):
         """
-        /account/{account_id}/project/{project_id}/fanpages/stat-summary?
+        /account/{account_id}/project/{project_id}/facebook/fanpages/stat-summary?
             since={start_date}
             until={end_date}
             entities={fanpages}
