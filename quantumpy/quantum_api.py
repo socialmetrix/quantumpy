@@ -20,6 +20,7 @@ class QuantumAPI(object):
     def get_projects(self, retry=3):
         """
         /account/{account_id}/projects
+        Get all available projects for account
         """
         response = self._query(
             method = 'GET',
@@ -35,6 +36,7 @@ class QuantumAPI(object):
     def get_project(self, project_id, retry=3):
         """
         /account/{account_id}/projects/{project_id}
+        Get project properties by id
         """
         response = self._query(
             method = 'GET',
@@ -53,6 +55,7 @@ class QuantumAPI(object):
             until={end_date}
             entities={fanpages}
             timezone={timezone}
+        Get stat summary for fanpages within a project
         """
         args = locals()
         params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
@@ -75,6 +78,7 @@ class QuantumAPI(object):
             until={end_date}
             entities={posts}
             timezone={timezone}
+        Get post interactions for posts within a project
         """
         args = locals()
         params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
