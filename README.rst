@@ -16,3 +16,10 @@ Usage
     # Get all projects associated with account
     projects = c.get_projects()
 
+
+Installation
+------------
+
+::
+
+		$ pip install quantumpy
