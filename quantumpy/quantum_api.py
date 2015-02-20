@@ -32,7 +32,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='-02:00', retry=3):
+    def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='+00:00', retry=3):
         """
         /account/{account_id}/project/{project_id}/fanpages/stat-summary?
             since={start_date}
@@ -53,6 +53,26 @@ class QuantumAPI(object):
             raise QuantumError('Could not get stat summary for project {}.'.format(project_id))
 
         return response
+
+    def get_fanpages_post_interactions(self, project_id, since, until, entities, timezone='+00:00', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/fanpages/posts-interactions/count/date?
+            since={start_date}
+            until={end_date}
+            entities={posts}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/fanpages/posts-interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retru
+        )
+
+        if response is False:
+            raise QuantumError('Could not get stat summary for project {}.'.format(project_id))
 
     def _query(self, method, path, params=None, retry=0):
         if not path.startswith('/'):
@@ -80,12 +100,12 @@ class QuantumAPI(object):
 
         try:
             if method == 'GET':
-                print('{}: {}'.format(method, url))
-                print(params)
+                #print('{}: {}'.format(method, url))
+                #print(params)
                 response = self.session.request(
                     method,
                     url,
-                    data          = params,
+                    data            = params,
                     allow_redirects = True,
                     timeout         = self.timeout,
                     headers         = self.headers
@@ -103,5 +123,15 @@ class QuantumAPI(object):
         if type(data) == type(bytes()):
             data = data.decode('utf-8')
         data = json.loads(data, parse_float=Decimal)
+
+        if type(data) is dict:
+            if 'code' in data:
+                if data['code'] == 'authentication':
+                    raise AuthenticationError(data['message'])
+            elif 'message' in data:
+                if 'Handler not found' in data['message']:
+                    raise HandlerNotFoundError(data['message'])
+                elif 'Internal server error' in data['message']:
+                    raise InternalServerError(data['message'])
 
         return data
