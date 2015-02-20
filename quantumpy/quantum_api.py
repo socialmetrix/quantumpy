@@ -32,6 +32,20 @@ class QuantumAPI(object):
 
         return response
 
+    def get_project(self, project_id, retry=3):
+        """
+        /account/{account_id}/projects/{project_id}
+        """
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/projects/{}'.format(self.account_id, project_id)
+        )
+
+        if response is False:
+            raise QuantumError('Could not get project {}.'.format(project_id))
+
+        return response
+
     def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='+00:00', retry=3):
         """
         /account/{account_id}/project/{project_id}/fanpages/stat-summary?
