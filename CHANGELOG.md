@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.2 - 2015-01-23
+### Fixed
+- Fix a typo with setting 'retry' parameter
+
 ## 0.1.1 - 2015-01-23
 ### Fixed
 - Fix a bug where the module would request outdated/inexistent URL paths for the APi endpoints

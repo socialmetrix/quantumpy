@@ -48,17 +48,17 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='-02:00', retry=3):
+    def get_fanpages_stat_summary(self, project_id, since, until, ids, timezone='+00:00', retry=3):
         """
         /account/{account_id}/project/{project_id}/profiles/fanpages/stat-summary?
             since={start_date}
             until={end_date}
-            entities={fanpages}
+            ids={fanpages}
             timezone={timezone}
         Get stat summary for fanpages within a project
         """
         args = locals()
-        params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
             path   = '/account/{}/project/{}/facebook/profiles/stat-summary'.format(self.account_id, project_id),
@@ -71,17 +71,17 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_post_interactions(self, project_id, since, until, entities, timezone='-02:00', retry=3):
+    def get_fanpages_post_interactions(self, project_id, since, until, ids, timezone='+00:00', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/profiles/posts-interactions/count/date?
             since={start_date}
             until={end_date}
-            entities={posts}
+            ids={posts}
             timezone={timezone}
         Get post interactions for posts within a project
         """
         args = locals()
-        params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
             path   = '/account/{}/project/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
