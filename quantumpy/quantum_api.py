@@ -86,7 +86,7 @@ class QuantumAPI(object):
             method = 'GET',
             path   = '/account/{}/project/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
             params = params,
-            retry  = retru
+            retry  = retry
         )
 
         if response is False:
