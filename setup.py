@@ -5,7 +5,7 @@ history = open('CHANGELOG.md').read()
 
 setup(
     name = 'quantumpy',
-    version = '0.1.0',
+    version = '0.1.1',
     description = 'An ultra simple wrapper for the Socialmetrix Quantum API, with basic functionality',
     author = 'Gustavo Machado',
     author_email = 'gdmachado@me.com',
@@ -17,7 +17,7 @@ setup(
 		'Intended Audience :: Developers',
 		'Programming Language :: Python',
 		'Natural Language :: English',
-		'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+		'License :: OSI Approved :: Apache Software License',
 		'Programming Language :: Python :: 2.6',
 		'Programming Language :: Python :: 2.7',
 		'Topic :: Software Development :: Libraries',
