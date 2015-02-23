@@ -48,9 +48,9 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='+00:00', retry=3):
+    def get_fanpages_stat_summary(self, project_id, since, until, entities, timezone='-02:00', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/fanpages/stat-summary?
+        /account/{account_id}/project/{project_id}/profiles/fanpages/stat-summary?
             since={start_date}
             until={end_date}
             entities={fanpages}
@@ -61,7 +61,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/fanpages/stat-summary'.format(self.account_id, project_id),
+            path   = '/account/{}/project/{}/facebook/profiles/stat-summary'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -71,9 +71,9 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_post_interactions(self, project_id, since, until, entities, timezone='+00:00', retry=3):
+    def get_fanpages_post_interactions(self, project_id, since, until, entities, timezone='-02:00', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/fanpages/posts-interactions/count/date?
+        /account/{account_id}/project/{project_id}/facebook/profiles/posts-interactions/count/date?
             since={start_date}
             until={end_date}
             entities={posts}
@@ -84,7 +84,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'entities', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/fanpages/posts-interactions/count/date'.format(self.account_id, project_id),
+            path   = '/account/{}/project/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
             params = params,
             retry  = retru
         )
