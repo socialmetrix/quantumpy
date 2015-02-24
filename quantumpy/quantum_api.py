@@ -11,7 +11,7 @@ from decimal import Decimal
 class QuantumAPI(object):
     def __init__(self, account_id, jwt, url='https://api.quantum.socialmetrix.com', timeout=None):
         self.url        = url.strip('/')
-        self.session    = requests.session()
+        self.session    = requests.Session()
         self.account_id = account_id
         self.jwt        = jwt
         self.headers    = {'X-Auth-Token': jwt}
@@ -33,7 +33,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_project(self, project_id, retry=3):
+    def get_project_by_id(self, project_id, retry=3):
         """
         /account/{account_id}/projects/{project_id}
         Get project properties by id
@@ -48,9 +48,9 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_stat_summary(self, project_id, since, until, ids, timezone='+00:00', retry=3):
+    def get_facebook_profiles_stat_summary(self, project_id, since, until, ids, timezone='-03:00', retry=3):
         """
-        /account/{account_id}/project/{project_id}/profiles/fanpages/stat-summary?
+        /account/{account_id}/project/{project_id}/facebook/profiles/stat-summary?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -71,7 +71,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_fanpages_post_interactions(self, project_id, since, until, ids, timezone='+00:00', retry=3):
+    def get_facebook_profiles_post_interactions(self, project_id, since, until, ids, timezone='-03:00', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/profiles/posts-interactions/count/date?
             since={start_date}
@@ -90,7 +90,31 @@ class QuantumAPI(object):
         )
 
         if response is False:
-            raise QuantumError('Could not get stat summary for project {}.'.format(project_id))
+            raise QuantumError('Could not get post interactions for project {}.'.format(project_id))
+
+        return response
+
+    def get_facebook_fans_total_by_country(self, project_id, since, until, ids, timezone='-03:00', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/fans/total/country?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/fans/total/country'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get fans by country for profile {}.'.format(project_id))
+
+        return response
 
     def _query(self, method, path, params=None, retry=0):
         if not path.startswith('/'):
@@ -121,7 +145,7 @@ class QuantumAPI(object):
                 response = self.session.request(
                     method,
                     url,
-                    data            = params,
+                    params          = params,
                     allow_redirects = True,
                     timeout         = self.timeout,
                     headers         = self.headers
@@ -133,6 +157,7 @@ class QuantumAPI(object):
         except requests.RequestException as e:
             raise HTTPError(e)
 
+        print(response.content)
         return self._parse(response.content)
 
     def _parse(self, data):
