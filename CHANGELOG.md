@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.3 - 2015-01-25
+### Fixed
+- Fix a bug where parameters were being passed incorrectly within the requests sent
+### Added
+- Added support for the 'Facebook fans by country' endpoint
+
 ## 0.1.2 - 2015-01-23
 ### Fixed
 - Fix a typo with setting 'retry' parameter
