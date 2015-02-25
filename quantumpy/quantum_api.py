@@ -48,7 +48,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_facebook_profiles_stat_summary(self, project_id, since, until, ids, timezone='-03:00', retry=3):
+    def get_facebook_profiles_stat_summary(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/profiles/stat-summary?
             since={start_date}
@@ -71,7 +71,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_facebook_profiles_post_interactions(self, project_id, since, until, ids, timezone='-03:00', retry=3):
+    def get_facebook_profiles_post_interactions(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/profiles/posts-interactions/count/date?
             since={start_date}
@@ -94,7 +94,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_facebook_fans_total_by_country(self, project_id, since, until, ids, timezone='-03:00', retry=3):
+    def get_facebook_fans_total_by_country(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/fans/total/country?
             since={start_date}
