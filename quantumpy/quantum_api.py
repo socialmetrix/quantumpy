@@ -116,6 +116,50 @@ class QuantumAPI(object):
 
         return response
 
+    def get_facebook_fans_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/fans/count/date?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/fans/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get fans by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_facebook_profiles_interactions_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/profiles/interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/profiles/interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get fans by date for profile {}.'.format(project_id))
+
+        return response
+
     def _query(self, method, path, params=None, retry=0):
         if not path.startswith('/'):
             if six.PY2:
@@ -157,7 +201,6 @@ class QuantumAPI(object):
         except requests.RequestException as e:
             raise HTTPError(e)
 
-        print(response.content)
         return self._parse(response.content)
 
     def _parse(self, data):
