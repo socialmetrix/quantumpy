@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.5 - 2015-03-12
+### Added
+- Added the 'get_facebook_profiles_interactions_count_by_date' endpoint method
+
 ## 0.1.3 and 0.1.4 - 2015-01-25
 ### Fixed
 - Fix a bug where parameters were being passed incorrectly within the requests sent
