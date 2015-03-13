@@ -160,6 +160,30 @@ class QuantumAPI(object):
 
         return response
 
+    def get_facebook_profiles_posts_count_by_date(self, project_id, since, until, ids, owner, type, timezone='UTC', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/profiles/posts/count/date?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            owner={owner}
+            type={type}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/profiles/posts/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get post count by date for profile {}.').format(project_id)
+
+        return response
+
     def _query(self, method, path, params=None, retry=0):
         if not path.startswith('/'):
             if six.PY2:
