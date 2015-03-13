@@ -180,7 +180,31 @@ class QuantumAPI(object):
         )
 
         if response is False:
-            raise QuantumError('Could not get post count by date for profile {}.').format(project_id)
+            raise QuantumError('Could not get post count by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_facebook_profiles_engagementrate_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /account/{account_id}/project/{project_id}/facebook/profiles/engagement-rate/date?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            owner={owner}
+            type={type}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/account/{}/project/{}/facebook/profiles/posts/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get engagement rate by date for profile {}.'.format(project_id))
 
         return response
 
