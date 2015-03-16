@@ -160,7 +160,7 @@ class QuantumAPI(object):
 
         return response
 
-    def get_facebook_profiles_posts_count_by_date(self, project_id, since, until, ids, owner, type, timezone='UTC', retry=3):
+    def get_facebook_profiles_posts_count_by_date(self, project_id, since, until, ids, owner=None, type=None, timezone='UTC', retry=3):
         """
         /account/{account_id}/project/{project_id}/facebook/profiles/posts/count/date?
             since={start_date}
@@ -190,15 +190,13 @@ class QuantumAPI(object):
             since={start_date}
             until={end_date}
             ids={fanpages}
-            owner={owner}
-            type={type}
             timezone={timezone}
         """
         args = locals()
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/posts/count/date'.format(self.account_id, project_id),
+            path   = '/account/{}/project/{}/facebook/profiles/engagement-rate/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -216,6 +214,7 @@ class QuantumAPI(object):
                 path = '/' + path
 
         url = self.url + path
+        params = {param: params[param] if params[param] is not None for param in params}
 
         try:
             return self._request(method, url, params)
