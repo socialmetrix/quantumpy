@@ -9,7 +9,7 @@ from quantumpy.exceptions import *
 from decimal import Decimal
 
 class QuantumAPI(object):
-    def __init__(self, account_id, jwt, url='https://api.quantum.socialmetrix.com', timeout=None):
+    def __init__(self, account_id, jwt, url='https://api.quantum.socialmetrix.com/v1', timeout=None):
         self.url        = url.strip('/')
         self.session    = requests.Session()
         self.account_id = account_id
@@ -19,12 +19,12 @@ class QuantumAPI(object):
 
     def get_projects(self, retry=3):
         """
-        /account/{account_id}/projects
+        /accounts/{account_id}/projects
         Get all available projects for account
         """
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/projects'.format(self.account_id),
+            path   = '/accounts/{}/projects'.format(self.account_id),
             retry  = retry
         )
 
@@ -35,12 +35,12 @@ class QuantumAPI(object):
 
     def get_project_by_id(self, project_id, retry=3):
         """
-        /account/{account_id}/projects/{project_id}
+        /accounts/{account_id}/projects/{project_id}
         Get project properties by id
         """
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/projects/{}'.format(self.account_id, project_id)
+            path   = '/accounts/{}/projects/{}'.format(self.account_id, project_id)
         )
 
         if response is False:
@@ -50,7 +50,7 @@ class QuantumAPI(object):
 
     def get_facebook_profiles_stat_summary(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/profiles/stat-summary?
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/stat-summary?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -61,7 +61,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/stat-summary'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/profiles/stat-summary'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -73,7 +73,7 @@ class QuantumAPI(object):
 
     def get_facebook_profiles_post_interactions(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/profiles/posts-interactions/count/date?
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/posts-interactions/count/date?
             since={start_date}
             until={end_date}
             ids={posts}
@@ -84,7 +84,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -96,7 +96,7 @@ class QuantumAPI(object):
 
     def get_facebook_fans_total_by_country(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/fans/total/country?
+        /accounts/{account_id}/projects/{project_id}/facebook/fans/total/country?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -106,7 +106,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/fans/total/country'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/fans/total/country'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -118,7 +118,7 @@ class QuantumAPI(object):
 
     def get_facebook_fans_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/fans/count/date?
+        /accounts/{account_id}/projects/{project_id}/facebook/fans/count/date?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -128,7 +128,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/fans/count/date'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/fans/count/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -140,7 +140,7 @@ class QuantumAPI(object):
 
     def get_facebook_profiles_interactions_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/profiles/interactions/count/date?
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/interactions/count/date?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -150,7 +150,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/interactions/count/date'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/profiles/interactions/count/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -162,7 +162,7 @@ class QuantumAPI(object):
 
     def get_facebook_profiles_posts_count_by_date(self, project_id, since, until, ids, owner=None, type=None, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/profiles/posts/count/date?
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/posts/count/date?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -174,7 +174,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/posts/count/date'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/profiles/posts/count/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -186,7 +186,7 @@ class QuantumAPI(object):
 
     def get_facebook_profiles_engagementrate_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
         """
-        /account/{account_id}/project/{project_id}/facebook/profiles/engagement-rate/date?
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/engagement-rate/date?
             since={start_date}
             until={end_date}
             ids={fanpages}
@@ -196,7 +196,7 @@ class QuantumAPI(object):
         params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
         response = self._query(
             method = 'GET',
-            path   = '/account/{}/project/{}/facebook/profiles/engagement-rate/date'.format(self.account_id, project_id),
+            path   = '/accounts/{}/projects/{}/facebook/profiles/engagement-rate/date'.format(self.account_id, project_id),
             params = params,
             retry  = retry
         )
@@ -214,7 +214,7 @@ class QuantumAPI(object):
                 path = '/' + path
 
         url = self.url + path
-        params = {param: params[param] if params[param] is not None for param in params}
+        params = {param: params[param] for param in params if params[param] is not None}
 
         try:
             return self._request(method, url, params)
