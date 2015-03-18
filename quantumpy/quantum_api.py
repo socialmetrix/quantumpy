@@ -239,7 +239,7 @@ class QuantumAPI(object):
                 path = '/' + path
 
         url = self.url + path
-        params = {param: params[param] for param in params if params[param] is not None}
+        params = {param: params[param] for param in params if params[param] is not None} if params is not None else None
 
         try:
             return self._request(method, url, params)
