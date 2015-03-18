@@ -84,7 +84,7 @@ class QuantumAPI(object):
         """
         args = locals()
         params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
-        resonse = self._query(
+        response = self._query(
             method = 'GET',
             path   = '/accounts/{}/projects/{}/facebook/profiles/{}/posts'.format(self.account_id, project_id, fanpage_id),
             params = params,
