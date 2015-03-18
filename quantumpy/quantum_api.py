@@ -190,7 +190,7 @@ class QuantumAPI(object):
         /accounts/{account_id}/projects/{project_id}/facebook/profiles/posts/count/date?
             since={start_date}
             until={end_date}
-            ids={fanpages}
+            ids={posts}
             owner={owner}
             type={type}
             timezone={timezone}
@@ -206,6 +206,28 @@ class QuantumAPI(object):
 
         if response is False:
             raise QuantumError('Could not get post count by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_facebook_profiles_postinteractions_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/facebook/profiles/posts-interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/facebook/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get post interactions for posts {}'.format(ids))
 
         return response
 
