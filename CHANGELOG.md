@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.8 - 2015-04-27
+### Added
+- Added twitter endpoint methods for reach count, interactions sent, interactions received, engagement rate and stat summary
+
 ## 0.1.6 - 2015-03-13
 ### Added
 - Added the 'get_facebook_profiles_posts_count_by_date' endpoint method
