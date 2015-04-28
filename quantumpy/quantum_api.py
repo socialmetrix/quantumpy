@@ -255,6 +255,117 @@ class QuantumAPI(object):
 
         return response
 
+    def get_twitter_profiles_stat_summary(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/twitter/profiles/stat-summary?
+            since={start_date}
+            until={end_date}
+            ids={profiles}
+            timezone={timezone}
+        Get stat summary for fanpages within a project
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/twitter/profiles/stat-summary'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get Twitter stat summary for project {}.'.format(project_id))
+
+        return response
+
+    def get_twitter_profiles_interactions_received_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/twitter/profiles/interactions-received/count/date?
+            since={start_date}
+            until={end_date}
+            ids={profiles}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/twitter/profiles/interactions-received/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get interactions received count by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_twitter_profiles_interactions_sent_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/twitter/profiles/interactions-sent/count/date?
+            since={start_date}
+            until={end_date}
+            ids={profiles}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/twitter/profiles/interactions-sent/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get interactions sent count by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_twitter_profiles_engagement_rate_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/twitter/profiles/engagement-rate/date?
+            since={start_date}
+            until={end_date}
+            ids={profiles}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/twitter/profiles/engagement-rate/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get engagement rate by date for profile {}.'.format(project_id))
+
+        return response
+
+    def get_twitter_reach_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/twitter/reach/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/twitter/reach/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get reach count by date for profile {}.'.format(project_id))
+
+        return response
+
     def get_twitter_profiles_tweets(self, project_id, profile_id, since, until, ids, owner=None, type=None, page=False, timezone='UTC', retry=3):
         """
         /accounts/{account_id}/projects/{project_id}/facebook/profiles/{profile_id}/tweets?
