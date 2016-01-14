@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.9 - 2016-01-14
+### Added
+- Added instagram endpoint methods for stat summary, profile posts, profile post interactions, interactions count by date, post count by date and post interactions count by date
+
 ## 0.1.8 - 2015-04-27
 ### Added
 - Added twitter endpoint methods for reach count, interactions sent, interactions received, engagement rate and stat summary
