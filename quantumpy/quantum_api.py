@@ -415,6 +415,146 @@ class QuantumAPI(object):
 
         return response
 
+    def get_instagram_profiles_stat_summary(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/stat-summary?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        Get stat summary for instagram profiles within a project
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/stat-summary'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get instagram stat summary for project {}.'.format(project_id))
+
+        return response
+
+    def get_instagram_profiles_posts(self, project_id, fanpage_id, since, until, ids, owner=None, type=None, page=False, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/{fanpage_id}/posts?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            owner={owner}
+            type={type}
+            timezone={timezone}
+        Get all posts for a given intagram profile and period
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/{}/posts'.format(self.account_id, project_id, fanpage_id),
+            params = params,
+            retry  = retry,
+            page   = page
+        )
+
+        if response is False:
+            raise QuantumError('Could not get posts for instagram profile {}.'.format(fanpage_id))
+
+        return response
+
+    def get_instagram_profiles_post_interactions(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/posts-interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            timezone={timezone}
+        Get post interactions for posts within a project
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get instagram post interactions for project {}.'.format(project_id))
+
+        return response
+
+    def get_instagram_profiles_interactions_count_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get fans by date for instagram profile {}.'.format(project_id))
+
+        return response
+
+    def get_instagram_profiles_posts_count_by_date(self, project_id, since, until, ids, owner=None, type=None, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/posts/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            owner={owner}
+            type={type}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/posts/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get post count by date for instagram profile {}.'.format(project_id))
+
+        return response
+
+    def get_instagram_profiles_postinteractions_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/instagram/profiles/posts-interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/instagram/profiles/posts-interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get instagram post interactions for posts {}'.format(ids))
+
+        return response
+
     def _query(self, method, path, params=None, retry=0, page=False):
         if not path.startswith('/'):
             if six.PY2:
