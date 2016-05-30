@@ -5,7 +5,7 @@ history = open('CHANGELOG.md').read()
 
 setup(
     name = 'quantumpy',
-    version = '0.1.9',
+    version = '0.1.10',
     description = 'An ultra simple wrapper for the Socialmetrix Quantum API, with basic functionality',
     author = 'Gustavo Machado',
     author_email = 'gdmachado@me.com',

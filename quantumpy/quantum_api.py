@@ -555,6 +555,54 @@ class QuantumAPI(object):
 
         return response
 
+    def get_youtube_profiles_videos(self, project_id, fanpage_id, since, until, ids, owner=None, type=None, page=False, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/youtube/profiles/{fanpage_id}/videos?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            owner={owner}
+            type={type}
+            timezone={timezone}
+        Get all posts for a given channel and period
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'owner', 'type', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/youtube/profiles/{}/videos'.format(self.account_id, project_id, fanpage_id),
+            params = params,
+            retry  = retry,
+            page   = page
+        )
+
+        if response is False:
+            raise QuantumError('Could not get videos for channel {}.'.format(fanpage_id))
+
+        return response
+
+    def get_youtube_profiles_videointeractions_by_date(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/youtube/profiles/video-interactions/count/date?
+            since={start_date}
+            until={end_date}
+            ids={posts}
+            timezone={timezone}
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/youtube/profiles/video-interactions/count/date'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get post interactions for posts {}'.format(ids))
+
+        return response
+
     def _query(self, method, path, params=None, retry=0, page=False):
         if not path.startswith('/'):
             if six.PY2:
