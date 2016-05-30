@@ -10,13 +10,28 @@ from decimal import Decimal
 from urlparse import urlparse, parse_qsl
 
 class QuantumAPI(object):
-    def __init__(self, account_id, jwt, url='https://api.quantum.socialmetrix.com/v1', timeout=None):
-        self.url        = url.strip('/')
+    def __init__(self, account_id, secret, baseurl='https://api.quantum.socialmetrix.com', version='v1', timeout=None):
+        self.secret     = secret
+        self.baseurl    = baseurl.strip('/')
+        self.url        = baseurl.strip('/') + '/' + version.strip('/')
         self.session    = requests.Session()
         self.account_id = account_id
-        self.jwt        = jwt
-        self.headers    = {'X-Auth-Token': jwt}
+        self.jwt        = self.get_jwt()
+        self.headers    = {'X-Auth-Token': self.jwt}
         self.timeout    = timeout
+
+    def get_jwt(self):
+        data = {'method': 'API-SECRET', 'secret': self.secret}
+        try:
+            response = self.session.post(self.baseurl + '/login', json=data, headers={'Content-Type': 'application/json'})
+        except Exception as e:
+            raise AuthenticationError(e)
+        else:
+            if response.status_code == 200:
+                return response.json()['jwt']
+            else:
+                raise AuthenticationError('Error authenticating ({}): {}'.format(response.json()['code'], response.json()['message']))
+            return response.json()['jwt']
 
     def get_projects(self, retry=3):
         """

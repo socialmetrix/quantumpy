@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.2.0 - 2016-05-30
+### Added
+- Added method for obtaining new jwt from api secret
+
 ## 0.1.10 - 2016-05-30
 ### Added
 - Added youtube endpoint methods for channel videos and profile video interactions, interactions count by date, post count by date and post interactions count by date
