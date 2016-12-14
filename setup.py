@@ -1,11 +1,11 @@
 from setuptools import setup
 
-readme  = open('README.rst').read()
+readme  = open('README.md').read()
 history = open('CHANGELOG.md').read()
 
 setup(
     name = 'quantumpy',
-    version = '0.2.0',
+    version = '0.2.1',
     description = 'An ultra simple wrapper for the Socialmetrix Quantum API, with basic functionality',
     author = 'Gustavo Machado',
     author_email = 'gdmachado@me.com',

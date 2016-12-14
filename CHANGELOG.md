@@ -47,3 +47,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Exceptions have been organized.
 - Added methods for accessing the 'projects', 'stat summary' and 'post interactions' endpoints
+
+## 0.2.1 - 2016-12-14
+## Changed
+- Removed `account_id` parameter from constructor. It can be inferred from the response.
