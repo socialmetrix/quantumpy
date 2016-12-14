@@ -49,5 +49,6 @@ All notable changes to this project will be documented in this file.
 - Added methods for accessing the 'projects', 'stat summary' and 'post interactions' endpoints
 
 ## 0.2.1 - 2016-12-14
-## Changed
+## Fixed
 - Removed `account_id` parameter from constructor. It can be inferred from the response.
+- Fixed `baseurl` param on constructor, allowing using different API backend versions.

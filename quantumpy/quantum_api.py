@@ -22,7 +22,7 @@ class QuantumAPI(object):
     def authenticate(self):
         data = {'method': 'API-SECRET', 'secret': self.secret}
         try:
-            response = self.session.post(self.baseurl + '/login', json=data, headers={'Content-Type': 'application/json'})
+            response = self.session.post(self.url + '/login', json=data, headers={'Content-Type': 'application/json'})
         except Exception as e:
             raise AuthenticationError(e)
         else:
