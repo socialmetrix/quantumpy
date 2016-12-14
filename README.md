@@ -19,7 +19,13 @@ projects = q.get_projects()
 
 ##Installation
 
-`$ pip install quantumpy`
+```bash
+pip install quantumpy
+
+# on your dev machine
+pip install --upgrade --no-deps --force-reinstall -e .
+pip show quantumpy
+```
 
 ##API Documentation
 
