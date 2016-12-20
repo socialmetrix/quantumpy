@@ -568,6 +568,29 @@ class QuantumAPI(object):
 
         return response
 
+    def get_youtube_profiles_stat_summary(self, project_id, since, until, ids, timezone='UTC', retry=3):
+        """
+        /accounts/{account_id}/projects/{project_id}/youtube/profiles/stat-summary?
+            since={start_date}
+            until={end_date}
+            ids={fanpages}
+            timezone={timezone}
+        Get stat summary for instagram profiles within a project
+        """
+        args = locals()
+        params = {param: args[param] for param in ['since', 'until', 'ids', 'timezone']}
+        response = self._query(
+            method = 'GET',
+            path   = '/accounts/{}/projects/{}/youtube/profiles/stat-summary'.format(self.account_id, project_id),
+            params = params,
+            retry  = retry
+        )
+
+        if response is False:
+            raise QuantumError('Could not get youtube stat summary for project {}.'.format(project_id))
+
+        return response
+
     def get_youtube_profiles_videos(self, project_id, fanpage_id, since, until, ids, owner=None, type=None, page=False, timezone='UTC', retry=3):
         """
         /accounts/{account_id}/projects/{project_id}/youtube/profiles/{fanpage_id}/videos?
