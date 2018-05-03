@@ -15,15 +15,16 @@ q = QuantumAPI(api_secret)
 
 # Get all projects associated with account
 projects = q.get_projects()
+for project in projects:
+  print(project['name'])
 ```
 
 ## Installation
 
 ```bash
-# pip install quantumpy
-
-# on your dev machine
-pip install --upgrade --no-deps --force-reinstall -e .
+git checkout https://github.com/socialmetrix/quantumpy.git quantumpy
+cd quantumpy
+pip install --upgrade --force-reinstall -e .
 pip show quantumpy
 ```
 

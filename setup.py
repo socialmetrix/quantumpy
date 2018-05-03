@@ -6,10 +6,10 @@ history = open('CHANGELOG.md').read()
 setup(
     name = 'quantumpy',
     version = '0.3.0',
-    description = 'An ultra simple wrapper for the Socialmetrix Quantum API, with basic functionality',
-    author = 'Gustavo Machado',
-    author_email = 'gdmachado@me.com',
-    url = 'https://github.com/gdmachado/quantumpy',
+    description = 'An ultra simple wrapper for the Socialmetrix Quantum API',
+    author = 'Gustavo Arjones (originally Gustavo Machado)',
+    author_email = 'info@socialmetrix.com',
+    url = 'https://github.com/socialmetrix/quantumpy',
     packages = ['quantumpy'],
     install_requires = ['requests >= 0.8', 'six >= 1.6'],
     classifiers = [
