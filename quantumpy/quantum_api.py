@@ -10,7 +10,7 @@ from decimal import Decimal
 from urlparse import urlparse, parse_qsl
 
 class QuantumAPI(object):
-    def __init__(self, secret, baseurl='https://api.quantum.socialmetrix.com', version='v1', timeout=None):
+    def __init__(self, secret, baseurl='https://quantum.socialmetrix.com/api', version='v1', timeout=None):
         self.secret     = secret
         self.baseurl    = baseurl.strip('/')
         self.url        = baseurl.strip('/') + '/' + version.strip('/')

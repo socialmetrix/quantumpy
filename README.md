@@ -1,8 +1,8 @@
-#Quantumpy
+# Quantumpy
 
 An ultra simple wrapper for the [Socialmetrix](https://www.socialmetrix.com/) Quantum API, with basic functionality
 
-##Usage
+## Usage
 
 You will need an active account and your API Secret to authenticate. Check the [official documentation](https://socialmetrix.github.io/quantum-api-docs/#getting-your-api-secret) to obtain yours.
 
@@ -17,16 +17,16 @@ q = QuantumAPI(api_secret)
 projects = q.get_projects()
 ```
 
-##Installation
+## Installation
 
 ```bash
-pip install quantumpy
+# pip install quantumpy
 
 # on your dev machine
 pip install --upgrade --no-deps --force-reinstall -e .
 pip show quantumpy
 ```
 
-##API Documentation
+## API Documentation
 
 Original API docs are [available here](https://socialmetrix.github.io/quantum-api-docs/)
